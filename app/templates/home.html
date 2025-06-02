@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<style>
+   .hero-section {
+        display: flex;
+        flex-direction: column;
+        min-height: 80vh;
+        padding: 1rem;
+        margin: 0;
+    }
+    
+    .hero-title {
+        font-size: 4.5rem;
+        margin: 0;
+        padding: 0;
+        line-height: 1.1; /* Tighter line spacing */
+    }
+    
+    .hero-name {
+        font-weight: bolder;
+        color: #0197f6;
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .hero-quote {
+        font-size: 1.3rem;
+        font-style: italic;
+        margin: 2rem 0;
+    }
+    
+    .hero-actions {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+    
+    .download-btn {
+        font-size: 1.5rem;
+        font-weight: bold;
+        min-width: 200px;
+        padding: 0.5rem;
+    }
+    
+    .linkedin-btn {
+        font-size: 1.5rem;
+        font-weight: bold;
+        min-width: 200px;
+        padding: 0.5rem;
+        background-color: #0077B5; /* LinkedIn brand color */
+        border-color: #0077B5;
+    }
+    
+    .linkedin-btn:hover {
+        background-color: #006097;
+        border-color: #006097;
+    }
+    
+    /* Typing effect styles */
+    .typing-text {
+        border-right: 3px solid #0197f6; /* Cursor effect */
+        white-space: nowrap;
+        overflow: hidden;
+        display: inline-block;
+    }
+    
+    /* Font Awesome icon styling */
+    .btn i {
+        margin-right: 8px;
+    }
+  
+    @media (max-width: 768px) {
+        .hero-section {
+            /* Remove text-align: center and align-items: center */
+            text-align: left;
+            align-items: flex-start;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            line-height: 1.1;
+            font-weight: bold;
+        }
+        
+        .hero-name {
+            font-size: 2.8rem;
+            display: inline;
+            text-transform: uppercase;
+        }
+        
+        .hero-quote {
+            font-size: 1.2rem;
+            text-align: left; /* Ensure quote stays left-aligned */
+        }
+        
+        .hero-actions {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-section {
+            /* Remove text-align: center and align-items: center */
+            text-align: left;
+            align-items: flex-start;
+        }
+        
+        .hero-title {
+            font-size: 2.0rem;
+            font-weight: bold;
+            line-height: 1.1;
+        }
+        
+        .hero-name {
+            font-size: 2.3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .hero-quote {
+            font-size: 1.0rem;
+            text-align: left; /* Ensure quote stays left-aligned */
+        }
+
+        .hero-actions {
+            align-items: flex-start; /* Align buttons to left instead of center */
+        }
+    }
+
+    .hero-name-white {
+    color: white;
+    font-weight: normal;
+    font-weight: bolder;
+}
+
+    .hero-name-blue {
+        font-weight: bolder;
+        /* color: #0197f6; */
+
+        text-transform: uppercase;
+        background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        
+    }
+</style>
+
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<main class="hero-section">
+    <section class="hero-content">
+      <h1 class="hero-title">
+    <span style="margin: 0;" id="greeting-element" class="typing-text"></span>
+    <br>
+    <span style="margin: 0;" id="name-element" class="typing-text">
+        <span class="hero-name-white"></span> 
+        <span class="hero-name-blue"></span>
+    </span>
+</h1>
+        
+        <p class="hero-quote">
+            <q>
+Seeking an entry-level IT role to grow technical skills <br /> and support innovative solutions.            </q>
+        </p>
+        
+        
+        <div class="hero-actions">
+            <button id="downloadBtn" 
+                    class="btn btn-danger "
+                    onclick="startDownload(event)"
+                    hx-get="/download-pdf"
+                    hx-swap="none">
+                    Download CV
+            </button>
+            
+            <a href="
+            https://www.linkedin.com/in/gian-espineda-556622369/
+            " 
+               target="_blank" 
+               class="text-white">
+               <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+        </div>
+    </section>
+</main>
+
+<script>// Auto typing effect
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if mobile device
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+        
+        // Greeting typing effect
+        const greetingText = "Hi, there!";
+        const greetingElement = document.getElementById('greeting-element');
+        let i = 0;
+        
+        function typeGreeting() {
+            if (i < greetingText.length) {
+                greetingElement.innerHTML += greetingText.charAt(i);
+                i++;
+                setTimeout(typeGreeting, 100);
+            } else {
+                // Remove cursor effect after typing completes
+                greetingElement.style.borderRight = 'none';
+                // Start typing the name after greeting completes
+                setTimeout(typeName, 500);
+            }
+        }
+        
+        // Name typing effect
+        const fullName = "I'm Gian E. Espineda";
+        const nameElement = document.getElementById('name-element');
+        let j = 0;
+
+        function typeName() {
+            if (j < fullName.length) {
+                if (j <= 3) { // "I'm " is 3 characters plus space
+                    nameElement.querySelector('.hero-name-white').innerHTML += fullName.charAt(j);
+                } else {
+                    // Check if we need to add line break on mobile after "Gian E."
+                    if (isMobile && j === 10) { // "I'm Gian E." is 10 characters
+                        nameElement.querySelector('.hero-name-blue').innerHTML += fullName.charAt(j) + '<br>';
+                    } else {
+                        nameElement.querySelector('.hero-name-blue').innerHTML += fullName.charAt(j);
+                    }
+                }
+                j++;
+                setTimeout(typeName, 100);
+            } else {
+                // Remove cursor effect after typing completes
+                nameElement.style.borderRight = 'none';
+            }
+        }
+        
+        // Start typing after a short delay
+        setTimeout(typeGreeting, 500);
+    });
+</script>
+{% endblock %}

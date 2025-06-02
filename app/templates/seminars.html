@@ -1,0 +1,239 @@
+<!-- <h2>Certificates</h2> -->
+<main class="certificates-container">
+    <div class="certificate-item">
+        <div class="text">
+            <h4>Certificate of Appreciation</h4>
+            <p>
+                Bicol IT Students Congress <br />
+                Social Hall, Sorsogon State University <br />
+                Feb 22-23, 2023
+            </p>
+            <a href="{{ url_for('views.certificate_appreciation_first') }}" class="certificate-link">View Certificate</a>
+        </div>
+        <div class="img">
+            <img src="{{ url_for('static', filename='certificate1.jpg') }}" alt="Certificate image">
+        </div>
+    </div>
+
+    <div class="certificate-item">
+        <div class="text">
+            <h4>Certificate of Appreciation</h4>
+            <p>
+                Bicol IT Students Congress <br />
+                Camarines Norte State College <br />
+                Apr 25-26, 2024
+            </p>
+            <a href="{{ url_for('views.certificate_appreciation_second') }}" class="certificate-link">View Certificate</a>
+        </div>
+        <div class="img">
+            <img src="{{ url_for('static', filename='certificate2.png') }}" alt="Certificate image">
+        </div>
+    </div>
+
+    <div class="certificate-item">
+        <div class="text">
+            <h4>Certificate of Recognition</h4>
+            <p>
+                Best Capstone Project <br />
+                <q>Aemilianum College Inc. Guidance Office: Optimizing Student Records</q> <br />
+                May 24, 2025
+            </p>
+            <a href="{{ url_for('views.certificate_capstone') }}" class="certificate-link">
+                View Certificate
+            </a>
+        </div>
+        <div class="img">
+            <img src="{{ url_for('static', filename='capstone_certificate.jpg') }}" alt="Certificate image">
+        </div>
+    </div>
+
+    <div class="certificate-item">
+        <div class="text">
+            <h4>Certificate of Completion</h4>
+            <p>
+                On-Job-Trainee<br />
+                DPWH 2nd District Engineering Office <br />
+                Payawin, Gubat, Sorsogon<br />
+                May 15, 2025
+            </p>
+            <a href="{{ url_for('views.certificate_ojt') }}" class="certificate-link">View Certificate</a>
+        </div>
+        <div class="img">
+            <img src="{{ url_for('static', filename='ojt_certificate.jpg') }}" alt="Certificate image">
+        </div>
+    </div>
+</main>
+
+<style>
+
+    .certificates-container {
+        display: grid;
+        gap: 20px;
+        padding: 15px;
+    }
+    
+    .certificate-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .text {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .text h4 {
+        margin-top: 0;
+        color: #ffc300;
+    }
+    
+    .text p {
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+    
+    .certificate-link {
+        display: inline-block;
+        padding: 8px 15px;
+        background-color: #00b4d8;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+    }
+    
+    .certificate-link:hover {
+        background-color: #0096c7;
+        color: white;
+        text-decoration: none;
+    }
+    
+    .img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    
+    .img img {
+        width: 100%;
+        height: auto;
+        max-height: 250px;
+        object-fit: contain;
+        transition: transform 0.3s;
+    }
+    h4  {
+        font-family: 'Pacifico';
+
+    }
+    .img img:hover {
+        transform: scale(1.03);
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .certificate-item {
+            grid-template-columns: 1fr;
+        }
+        
+        .img {
+            order: -1; /* Image first on mobile */
+        }
+        
+        .img img {
+            max-height: 200px;
+        }
+        
+        .text {
+            padding: 15px;
+        }
+    }
+    
+    @media (min-width: 1200px) {
+        .certificates-container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .certificate-item {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr;
+        }
+        
+        .img {
+            order: -1;
+        }
+    }
+
+
+
+
+
+    /*  */
+       main {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        max-width: 100%;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+    
+    .contact-info {
+        margin-bottom: 20px;
+    }
+    
+    .contact-item {
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .contact-item i {
+        width: 20px;
+        text-align: center;
+    }
+    
+    a {
+        color: #ffffff;
+        text-decoration: none;
+        word-break: break-all;
+    }
+    
+    .details-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    
+    .detail-item {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .detail-label {
+        font-weight: bold;
+        color: #cccccc;
+        font-size: 0.9em;
+    }
+    
+    /* Mobile-specific adjustments */
+    @media (max-width: 480px) {
+        .details-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .contact-item {
+            flex-wrap: wrap;
+        }
+        
+        .contact-item i {
+            margin-right: 8px;
+        }
+    }
+</style>
