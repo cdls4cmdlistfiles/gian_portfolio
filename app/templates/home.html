@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<style>
+    .hero-section {
+        display: flex;
+        flex-direction: column;
+        min-height: 80vh;
+        padding: 2rem;
+    }
+    
+    .hero-title {
+        font-size: 4.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-name {
+        font-weight: bolder;
+        color: #0197f6;
+        display: block;
+    }
+    
+    .hero-quote {
+        font-size: 2rem;
+        font-style: italic;
+        margin: 2rem 0;
+    }
+    
+    .hero-actions {
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+    
+    .download-btn {
+        font-size: 1.5rem;
+        font-weight: bold;
+        min-width: 250px;
+        padding: 1rem 2rem;
+    }
+    
+    /* Typing effect styles */
+    .typing-text {
+        border-right: 3px solid #0197f6; /* Cursor effect */
+        white-space: nowrap;
+        overflow: hidden;
+        display: inline-block;
+    }
+    
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 3rem;
+        }
+        
+        .hero-quote {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+
+<main class="hero-section">
+    <section class="hero-content">
+        <h1 class="hero-title">
+            <span id="greeting-element" class="typing-text"></span>
+            <br><span id="name-element" class="hero-name typing-text"></span>
+        </h1>
+        
+        <p class="hero-quote">
+            <q>Creating. Learning. Sharing.</q>
+        </p>
+        
+        <div class="hero-actions">
+            <button id="downloadBtn" 
+                    class="btn btn-danger download-btn"
+                    onclick="startDownload(event)"
+                    hx-get="/download-pdf"
+                    hx-swap="none">
+                Download CV
+            </button>
+        </div>
+    </section>
+</main>
+
+<script>
+    function startDownload(event) {
+        event.preventDefault();
+        const btn = document.getElementById('downloadBtn');
+        const originalText = btn.innerHTML;
+        
+        // Show loading state
+        btn.innerHTML = `
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Downloading...
+        `;
+        btn.disabled = true;
+        
+        // Wait for the timeout before initiating download
+        setTimeout(() => {
+            // Initiate download
+            window.location.href = '/download-pdf';
+            
+            // Reset button after download starts
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        }, 1000); // 1 second delay
+    }
+
+    // Auto typing effect
+    document.addEventListener('DOMContentLoaded', function() {
+        // Greeting typing effect
+        const greetingText = "Hi, there!";
+        const greetingElement = document.getElementById('greeting-element');
+        let i = 0;
+        
+        function typeGreeting() {
+            if (i < greetingText.length) {
+                greetingElement.innerHTML += greetingText.charAt(i);
+                i++;
+                setTimeout(typeGreeting, 100);
+            } else {
+                // Remove cursor effect after typing completes
+                greetingElement.style.borderRight = 'none';
+                // Start typing the name after greeting completes
+                setTimeout(typeName, 500);
+            }
+        }
+        
+        // Name typing effect
+        const nameText = "I'm Gian E. Espineda";
+        const nameElement = document.getElementById('name-element');
+        let j = 0;
+        
+        function typeName() {
+            if (j < nameText.length) {
+                nameElement.innerHTML += nameText.charAt(j);
+                j++;
+                setTimeout(typeName, 100);
+            } else {
+                // Remove cursor effect after typing completes
+                nameElement.style.borderRight = 'none';
+            }
+        }
+        
+        // Start typing after a short delay
+        setTimeout(typeGreeting, 500);
+    });
+</script>
+{% endblock %}

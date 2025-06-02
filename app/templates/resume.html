@@ -1,0 +1,465 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Resume
+{% endblock %}
+
+{% block content %}
+<main class="con">
+  <!-- Mobile Menu Button (Hamburger) with dropdown -->
+  <div class="mobile-menu-container">
+    <button class="mobile-menu-button" onclick="toggleDropdown()">
+      <i class="fas fa-bars"></i> Menu
+    </button>
+    <nav id="menu" class="mobile-dropdown">
+      <ul>
+        <li>
+          <button 
+            hx-target="#content"
+            hx-swap="innerHTML transition:true"
+            hx-get="{{ url_for('views.intern_experience') }}"
+            class="htmx-request"
+            hx-on:click="setActiveButton(this); handleMobileClick()"
+          >
+            Internship Experience
+          </button>
+        </li>
+        <li>
+          <button
+            hx-target="#content"
+            hx-swap="innerHTML transition:true transition:true"
+            hx-get="{{ url_for('views.skills') }}"
+            class="htmx-request"
+            hx-on:click="setActiveButton(this); handleMobileClick()"
+          >
+            Skills
+          </button>
+        </li>
+        <li>
+          <button 
+            hx-target="#content"
+            hx-swap="innerHTML transition:true transition:true"
+            hx-get="{{ url_for('views.education') }}"
+            class="htmx-request"
+            hx-on:click="setActiveButton(this); handleMobileClick()"
+          >
+            Education
+          </button>
+        </li>
+        <li>
+          <button
+            hx-target="#content"
+            hx-swap="innerHTML transition:true transition:true"
+            hx-get="{{ url_for('views.seminars') }}"
+            class="htmx-request"
+            hx-on:click="setActiveButton(this); handleMobileClick()"
+          >
+            Certificates
+          </button>
+        </li>
+        <li>
+          <button
+            hx-target="#content"
+            hx-swap="innerHTML transition:true transition:true"
+            hx-get="{{ url_for('views.about_me') }}"
+            class="htmx-request"
+            hx-on:click="setActiveButton(this); handleMobileClick()"
+          >
+            About Me
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  
+  <!-- Desktop menu -->
+  <nav id="desktop-menu" class="desktop-menu">
+    <ul>
+      <li>
+        <button 
+          hx-target="#content"
+          hx-swap="innerHTML transition:true"
+          hx-get="{{ url_for('views.intern_experience') }}"
+          class="htmx-request"
+          hx-on:click="setActiveButton(this); handleMobileClick()"
+        >
+          Internship Experience
+        </button>
+      </li>
+      <li>
+        <button
+          hx-target="#content"
+          hx-swap="innerHTML transition:true transition:true"
+          hx-get="{{ url_for('views.skills') }}"
+          class="htmx-request"
+          hx-on:click="setActiveButton(this); handleMobileClick()"
+        >
+          Skills
+        </button>
+      </li>
+      <li>
+        <button 
+          hx-target="#content"
+          hx-swap="innerHTML transition:true transition:true"
+          hx-get="{{ url_for('views.education') }}"
+          class="htmx-request"
+          hx-on:click="setActiveButton(this); handleMobileClick()"
+        >
+          Education
+        </button>
+      </li>
+      <li>
+        <button
+          hx-target="#content"
+          hx-swap="innerHTML transition:true transition:true"
+          hx-get="{{ url_for('views.seminars') }}"
+          class="htmx-request"
+          hx-on:click="setActiveButton(this); handleMobileClick()"
+        >
+          Certificates
+        </button>
+      </li>
+      <li>
+        <button
+          hx-target="#content"
+          hx-swap="innerHTML transition:true transition:true"
+          hx-get="{{ url_for('views.about_me') }}"
+          class="htmx-request"
+          hx-on:click="setActiveButton(this); handleMobileClick()"
+        >
+          About Me
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="content" class="content-section">
+    <main class="main-content">
+      <section class="contact-info">
+        <div class="contact-item">
+          <i class="fas fa-location-dot"></i>
+          <span>Purok 7, Villareal, Gubat, Sorsogon</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:gianerminoespineda@gmail.com">gianerminoespineda@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <span>+63927-238-2851</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-globe"></i>
+          <a href="https://gdev.com" target="_blank">Gdev.com</a>
+        </div>
+      </section>
+
+      <section class="personal-details">
+        <div class="details-grid">
+          <div class="detail-item">
+            <span class="detail-label">Age:</span>
+            <span class="detail-value">21</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Civil Status:</span>
+            <span class="detail-value">Single</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Sex:</span>
+            <span class="detail-value">Male</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Nationality:</span>
+            <span class="detail-value">Filipino</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Religion:</span>
+            <span class="detail-value">Roman Catholic</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </section>
+</main>
+
+<style>
+  /* Base styles */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Layout */
+  .con {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Mobile menu container */
+  .mobile-menu-container {
+    position: relative;
+    display: none;
+    margin-bottom: 15px;
+  }
+  
+  /* Mobile menu button */
+  .mobile-menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #00b4d8;
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+  }
+  
+  .mobile-menu-button:hover {
+    background: #0096c7;
+  }
+  
+  .mobile-menu-button i {
+    margin-right: 8px;
+  }
+  
+  /* Mobile dropdown menu */
+  .mobile-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .mobile-dropdown.show {
+    display: block;
+  }
+  
+  .mobile-dropdown ul {
+    list-style: none;
+  }
+  
+  .mobile-dropdown button {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease;
+  }
+  
+  .mobile-dropdown button:hover {
+    background-color: rgba(0, 180, 216, 0.3);
+  }
+  
+  .mobile-dropdown button:last-child {
+    border-bottom: none;
+  }
+  
+  /* Desktop menu */
+  .desktop-menu {
+    /* background-color: rgba(0, 0, 0, 0.1); */
+    border-radius: 5px;
+    padding: 15px 0;
+  }
+  
+  .desktop-menu ul {
+    list-style: none;
+  }
+  
+  .desktop-menu button {
+    width: 100%;
+    margin-top: 5px;
+    padding: 12px 20px;
+    border: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+  }
+/*   
+  .desktop-menu button:hover {
+    background-color: rgba(0, 180, 216, 0.2);
+  } */
+  
+  .desktop-menu button.active,
+  .mobile-dropdown button.active {
+    color: #00b4d8;
+    /* font-weight: bold; */
+    border-left: 3px solid #00b4d8;
+    background-color: rgba(0, 180, 216, 0.1);
+  }
+  
+  /* Content section */
+  .content-section {
+    padding: 0;
+  }
+  
+  .main-content {
+    padding: 15px;
+  }
+  
+  /* Contact info */
+  .contact-info {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .contact-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  .contact-item i {
+    width: 20px;
+    text-align: center;
+    color: #00b4d8;
+  }
+  
+  .contact-item a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .contact-item a:hover {
+    color: #00b4d8;
+    text-decoration: underline;
+  }
+  
+  /* Personal details */
+  .personal-details {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  .detail-item {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .detail-label {
+    font-weight: bold;
+    color: #aaaaaa;
+    font-size: 0.9em;
+    margin-bottom: 3px;
+  }
+  
+  .detail-value {
+    color: #ffffff;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .con {
+      grid-template-columns: 1fr;
+      padding: 15px;
+    }
+    
+    .mobile-menu-container {
+      display: block;
+    }
+    
+    .desktop-menu {
+      display: none;
+    }
+    
+    .main-content {
+      padding: 0;
+    }
+    
+    .details-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .contact-item {
+      flex-wrap: wrap;
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .mobile-menu-container {
+      display: none;
+    }
+    
+    .desktop-menu {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  function setActiveButton(clickedButton) {
+    // Remove active class from all buttons
+    document.querySelectorAll('nav button').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    
+    // Add active class to clicked button
+    clickedButton.classList.add('active');
+  }
+  
+  function toggleDropdown() {
+    const dropdown = document.getElementById('menu');
+    dropdown.classList.toggle('show');
+  }
+  
+  function handleMobileClick() {
+    // Close dropdown when an item is selected
+    const dropdown = document.getElementById('menu');
+    dropdown.classList.remove('show');
+  }
+  
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function(event) {
+    const dropdown = document.getElementById('menu');
+    const button = document.querySelector('.mobile-menu-button');
+    
+    if (!event.target.closest('.mobile-menu-container') && dropdown.classList.contains('show')) {
+      dropdown.classList.remove('show');
+    }
+  });
+  
+  // Set initial active button if needed
+  document.addEventListener('DOMContentLoaded', function() {
+    // You might want to set the first button as active by default
+    const firstButton = document.querySelector('nav button');
+    if (firstButton) {
+      firstButton.classList.add('active');
+    }
+  });
+</script>
+
+{% endblock %}
