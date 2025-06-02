@@ -1,0 +1,164 @@
+<!-- <h2>Internship Experience</h2> -->
+<section class="experience-card">
+    <div class="experience-header">
+        <img class="company-logo" 
+             src="{{ url_for('static', filename='DPWH_Logo.jpg') }}" 
+             alt="DPWH Logo">
+        <div class="company-info">
+            <h2 style="color: #f27d30; font-weight: bold;">Department of Public Works and Highways</h2>
+            <p class="company-location">
+                Sorsogon 2nd District Engineering Office<br>
+                Payawin, Gubat, Sorsogon
+            </p>
+            <p class="duration">From Feb 4 - May 15, 2025</p>
+            <p class="hours">480 hours</p>
+        </div>
+        </div>
+    </div>
+
+    <div class="experience-details">
+        <div class="tasks-section">
+            <h3>Tasks</h3>
+            <ul >
+                <li>Data Entry</li>
+                <li>Assisting administrative tasks</li>
+            </ul>
+        </div>
+        
+       
+    </div>
+</section>
+
+<style>
+    /* Base styles */
+    .experience-card {
+        background-color: rgba(252, 252, 252, 0.035);
+        border-radius: 10px;
+        padding: 25px;
+        max-width: 850px;
+        margin: 0 auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .experience-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .company-logo {
+        width: 125px;
+        height: 125px;
+        border-radius: 50%;
+        object-fit: cover;
+        /* border: 2px solid rgba(255, 255, 255, 0.1); */
+        margin-bottom: 15px;
+    }
+    
+    .company-info {
+        text-align: center;
+    }
+    
+    .company-info h2 {
+        font-family: Georgia, serif;
+        color: white;
+        font-weight: bold;
+        margin: 0 0 10px 0;
+        font-size: 1.5rem;
+    }
+    
+    .company-location {
+        color: #aaa;
+        line-height: 1.5;
+        margin: 0;
+    }
+    
+    .experience-details {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 20px;
+    }
+    
+    .tasks-section h3 {
+        /* color: #00b4d8; */
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+    }
+    
+    .task-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0 0 20px 0;
+    }
+    
+    .task-list li {
+        padding: 5px 0;
+        color: #ddd;
+        position: relative;
+        padding-left: 20px;
+    }
+    
+    .task-list li:before {
+        content: "•";
+        /* color: #00b4d8; */
+        font-size: 1.2rem;
+        position: absolute;
+        left: 0;
+        top: 2px;
+    }
+    
+    .duration-section {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    
+    .duration, .hours {
+        color: #bbb;
+        margin: 5px 0;
+    }
+    
+    /* Responsive adjustments */
+    @media (min-width: 768px) {
+        .experience-header {
+            flex-direction: row;
+            text-align: left;
+            align-items: center;
+        }
+        
+        .company-logo {
+            margin-right: 20px;
+            margin-bottom: 0;
+        }
+        
+        .company-info {
+            text-align: left;
+        }
+        
+        .company-info h2 {
+            font-size: 1.8rem;
+        }
+        
+        .task-list li {
+            padding-left: 25px;
+            
+        }
+         .experience-details {
+            padding-left: 10px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .experience-card {
+            padding: 15px;
+        }
+        
+        .duration-section {
+            flex-direction: column;
+        }
+        .experience-details {
+            padding-left: 20px;
+        }
+    }
+
+</style>
