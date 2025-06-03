@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Projects
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card project-card h-100">
+                <img class="card-img-top p-2"
+                     src="{{ url_for('static', filename='magic-book.png') }}" 
+                     alt="Project image">
+                <div class="card-body">
+                    <h5 class="card-title">Guestbook</h5>
+                    <p class="card-text">
+                        <q>
+                            Visitors can leave messages
+                        </q>
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="">
+                            <a href="#" class="btn btn-sm btn-primary">Live</a>
+                            <a href="#" class="btn btn-sm btn-secondary">Code</a>
+                        </div>
+                    </div>
+                </div>
+    <div class="card-footer bg-transparent py-2">
+    <div class="d-flex flex-wrap gap-1">
+        <span class="badge bg-light text-dark"><i class="fab fa-html5 me-1"></i> HTML</span>
+        <span class="badge bg-light text-dark"><i class="fab fa-css3-alt me-1"></i> CSS</span>
+        <span class="badge bg-light text-dark"><i class="fas fa-code me-1"></i> HTMX</span>
+        <span class="badge bg-light text-dark"><i class="fab fa-python me-1"></i> Python</span>
+        <span class="badge bg-light text-dark"><i class="fas fa-database me-1"></i> SQLAlchemy</span>
+    </div>
+</div>
+            </div>
+        </div>
+        
+        <!-- Add more project cards here -->
+    </div>
+</div>
+
+<style>
+    .project-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .project-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .card-img-top {
+        width: 100%;
+        height: 160px;
+        object-fit: contain;
+    }
+    
+    .card-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .card-text {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+    
+    .btn-group .btn {
+        padding: 0.25rem 0.75rem;
+    }
+</style>
+
+{% endblock %}
