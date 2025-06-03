@@ -20,7 +20,7 @@
         <form method="POST" action="{{ url_for('views.send_mail') }}">
             <div class="form-group">
                 <label for="name">Full name</label>
-                <input class="form-control" type="text" name="name" id="name" placeholder="Your name">
+                <input class="form-control" type="text" required name="name" id="name" placeholder="Your name">
             </div>
             <div class="form-group">
                 <label for="email">Email <strong class="text-warning">(Optional)</strong></label>
@@ -28,7 +28,7 @@
             </div>
             <div class="form-group">
                 <label for="message">Message</label>
-                <textarea class="form-control" name="message" id="message" rows="5"></textarea>
+                <textarea class="form-control" name="message" required id="message" rows="5"></textarea>
             </div>
             <button class="btn btn-success">Send</button>
         </form>
